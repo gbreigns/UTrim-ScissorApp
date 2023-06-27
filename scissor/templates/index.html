@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block title %}Link Shortener{% endblock title %}
+{% block content %}
+{% if current_user.is_authenticated %}
+<h2>Welcome, {{ current_user.username }}! <span class="wave">👋🏾</span></h2>
+<br>
+<form action="{{url_for('index')}}" method="POST" class="form-container">
+  <div class="form-group">
+    <label for="long_link">Original Link</label>
+    <input type="url" name="long_link" class="form-control" placeholder="https://example.com/long-link" required>
+  </div>
+  <div class="form-group">
+    <label for="custom_path">Customize Link (Optional)</label>
+    <input type="text" name="custom_path" class="form-control" placeholder="Example: fb.com/custom-back-half">
+  </div>
+  <div class="form-group">
+    <input type="submit" value="Shorten Link" class="button"/>
+  </div>
+</form>
+{% else %}
+<section class="py-10 lg:py-20">
+    <div class="max-width grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-10 md:place-items-center">
+        <article class="text-center md:text-left">
+            <h1 class="text-5xl lg:text-6xl mb-5 font-bold text-slate-800">Shorter Links and More...</h1>
+            <p class="lg:text-lg text-slate-400 mb-10">Don't just create shorter links, monitor your links, view link history and generate customized QR Codes.</p>
+            <button class="btn-cta rounded-full"><a href="{{ url_for('register') }}">Get Started</a></button>
+        </article>
+        <article>
+            <img src="{{ url_for('static', filename='images/illustration-working.svg') }}" alt="GBR-CUlty" />
+        </article>
+    </div>
+</section>
+{% endif %}
+<section class="bg-gray-100 py-10 lg:py-20">
+    <div class="px-5 lg:max-w-5xl lg:mx-auto xl:max-w-6xl 2xl:px-0">
+        <h2 class="text-4xl font-bold text-slate-800 mb-3 text-center">Best Practices of using UTrim</h2>
+        <p class="text-slate-400 text-center mb-10 lg:mb-20">Monitor your link performance accross the web <br /> with our advanced statistics dashboard</p>
+    
+
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <artcle class="bg-white p-5 rounded">
+                <img src="{{ url_for('static', filename='images/icon-brand-recognition.svg') }}" alt="" class="p-3 -mt-12 bg-slate-800 rounded-full"/>
+                <h3 class="text-slate-800 text-lg mt-5 mb-2 font-bold">Branded Links</h3>
+                <p class="text-slate-400 text-sm">Improve brand awareness and content discoverability through customizable links and boost audience engagement.</p>
+            </artcle>
+
+            <artcle class="bg-white p-5 rounded">
+                <img src="{{ url_for('static', filename='images/icon-analytics.svg') }}" alt="" class="p-3 -mt-12 bg-slate-800 rounded-full"/>
+                <h3 class="text-slate-800 text-lg mt-5 mb-2 font-bold">Analytics</h3>
+                <p class="text-slate-400 text-sm">Gain insights into who is clicking your links. Knowing when and where people engage with your content helps inform better decisions.</p>
+            </artcle>
+
+            <artcle class="bg-white p-5 rounded">
+                <img src="{{ url_for('static', filename='images/icon-qrcode.svg') }}" alt="" class="p-3 -mt-12 bg-slate-800 rounded-full"/>
+                <h3 class="text-slate-800 text-lg mt-5 mb-2 font-bold">QR Codes</h3>
+                <p class="text-slate-400 text-sm">Generate and download QR code for your links. QR codes make for good business promotion material</p>
+            </artcle>
+        </div>
+    </div>
+</section>
+
+
+<div class="icons">
+    <a href="https://twitter.com/Gbreigns" target="_blank"><i class="ri-twitter-line"></i></a>
+    <a href="https://www.linkedin.com/in/pascal-reigns-00a568219/" target="_blank"><i class="ri-linkedin-line"></i></a>
+</div>
+
+
+<footer class="bg-slate-900 py-10 lg:py-20">
+    <div class="px-5 lg:max-w-5xl lg:mx-auto xl:max-w-6xl 2xl:px-0 grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-5">
+        <article>
+            <div class="brand font-bold text-white">UTrim</div>
+        </article>
+
+        <article>
+            <h3 class="text-white text-lg font-bold tracking-wide">Features</h3>
+            <ul>
+                <li><button class="text-slate-200 text-sm mt-1">Link Shortening</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Customized links</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">QR Code Generation</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Analytics</button></li>
+            </ul>
+        </article>
+
+        <article>
+            <h3 class="text-white text-lg font-bold tracking-wide">Resources</h3>
+            <ul>
+                <li><button class="text-slate-200 text-sm mt-1">Blog</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Developers</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Support</button></li>
+            </ul>
+        </article>
+
+        <article>
+            <h3 class="text-white text-lg font-bold tracking-wide">Company</h3>
+            <ul>
+                <li><button class="text-slate-200 text-sm mt-1">About</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Our Team</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Careers</button></li>
+                <li><button class="text-slate-200 text-sm mt-1">Contact</button></li>
+            </ul>
+        </article>
+
+        <article>
+            <ul class="flex items-center">
+                <li><img src="{{ url_for('static', filename='images/icon-facebook.svg') }}" alt="" /></li>
+                <li class="ml-4"><img src="{{ url_for('static', filename='images/icon-twitter.svg') }}" alt="" /></li>
+                <li class="mx-5"><img src="{{ url_for('static', filename='images/icon-pinterest.svg') }}" alt="" /></li>
+                <li><img src="{{ url_for('static', filename='images/icon-instagram.svg') }}" alt="" /></li>
+            </ul>
+        </article>
+    </div>
+
+    <p>&copy; 2023 URL Shortener. All rights reserved.</p>
+
+</footer>
+{% endblock content %}
